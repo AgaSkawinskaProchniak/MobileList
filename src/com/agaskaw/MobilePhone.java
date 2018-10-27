@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class MobilePhone{
 
-    private ArrayList<Contact> contactsList=new ArrayList<Contact>();
+    private ArrayList<Contact> contactsList;
 
 
     public MobilePhone() {
-        this.contactsList = contactsList;
+        this.contactsList = new ArrayList<Contact>(); //its better to initialize in constructor
     }
 
     public void printContactsList(){
