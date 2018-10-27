@@ -7,7 +7,6 @@ public class Main {
     private static MobilePhone mobilePhone = new MobilePhone();
 
 
-
     public static void main(String[] args) {
 
 
@@ -67,12 +66,18 @@ public class Main {
     private static void addContact() {
         System.out.println("Name: ");
         String name = scanner.next();
-        System.out.println("Number: ");
-        String number = scanner.next();
-        Contact newContact = Contact.createContact(name, number);
-        mobilePhone.addContact(newContact);
-        System.out.println(newContact.getName() + " added.");
+        if (mobilePhone.findByName(name) == null) {
+            System.out.println("Number: ");
+            String number = scanner.next();
+            Contact newContact = Contact.createContact(name, number);
+            mobilePhone.addContact(newContact);
+            System.out.println(newContact.getName() + " added.");
+        }else{
+            System.out.println("Contact already exists");
+
+        }
     }
+
 
     private static void modifyContact() {
         System.out.println("Which contact would you like to modify?");
@@ -82,6 +87,10 @@ public class Main {
             System.out.println("Found: " + contactToModify.getName() + ", " + contactToModify.getNumber());
             System.out.print("Please enter new name:");
             String newName = scanner.next();
+            if(mobilePhone.findByName(newName)!=null){
+                System.out.println("Contact already exists. Enter new name:");
+                newName=scanner.next();
+            }
             System.out.print("Please enter new number:");
             String newNumber = scanner.next();
             Contact contactToBeStored = Contact.createContact(newName, newNumber);
@@ -93,7 +102,7 @@ public class Main {
 
     }
 
-    private static void removeContact(){
+    private static void removeContact() {
         System.out.println("Enter contact to be removed:");
         String nameToRemove = scanner.next();
         Contact contactToBeRemoved = mobilePhone.findByName(nameToRemove);
@@ -117,7 +126,7 @@ public class Main {
         if (mobilePhone.findByName(nameToBeFound) != null) {
             Contact contactToBeFound = mobilePhone.findByName(nameToBeFound);
             System.out.println("Found " + contactToBeFound.getName() + ", tel. " + contactToBeFound.getNumber());
-        }else{
+        } else {
             System.out.println("Contact not found.");
         }
     }

@@ -31,13 +31,13 @@ public class MobilePhone{
 
     }
 
-    public void findContact(Contact contact){
+    public int findContact(Contact contact){
         int position = contactsList.indexOf(contact);
-        if(position>=0){
-            System.out.println(contact+"found at "+position+1);
-        }
+        return position;
 
     }
+
+
 
     public void modifyContact(Contact contact,Contact newContact){
         int position  =contactsList.indexOf(contact);
